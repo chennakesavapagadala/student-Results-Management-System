@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% include 'cdlines.html' %}
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0px 0px 6px 1px black;">
+      <a class="navbar-brand" href="#">
+        <img src="" alt="" class="navbar-brand" height="30" width="30" style="border-radius:50%;">
+        Admin
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin_pannel' %}">10Th</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin_inter' %}">Intermediate</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin_degree' %}">Degree</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin_btech' %}">B.Tech</a>
+          </li>
+        </ul>
+      </div>
+      Admin &nbsp;&nbsp;&nbsp;
+      <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-9">
+          <h3 class="text-center">SSC Student Result</h3>
+
+          <table class="table table-hover table-bordered mt-1 text-center">
+            <thead>
+              <th>MARKS</th>
+              <th>NAME</th>
+              <th>Hall Ticket No</th>
+              <th>Telugu</th>
+              <th>Hindi</th>
+              <th>English</th>
+              <th>Mathematics</th>
+              <th>Science</th>
+              <th>Social</th>
+              <th>Total</th>
+              <th>Percentage</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </thead>
+            <tbody>
+              {% for ssc in ssc %}
+                <tr>
+                  <td><b>MARKS</b></td>
+                  <td>{{ssc.name}}</td>
+                  <td>{{ssc.hall_ticket}}</td>
+                  <td>{{ssc.telugu}}</td>
+                  <td>{{ssc.hindi}}</td>
+                  <td>{{ssc.english}}</td>
+                  <td>{{ssc.maths}}</td>
+                  <td>{{ssc.science}}</td>
+                  <td>{{ssc.social}}</td>
+                  <td>{{ssc.total}}</td>
+                  <td>{{ssc.percent}}</td>
+                  <td>
+                    {% if ssc %}
+                      {% if ssc.total < 210 %}
+                        FAIL
+                      {% else %}
+                        PASS
+                      {% endif %}
+                    {% endif %}
+                  </td>
+                  <td><a href="#" class="btn btn-danger btn-sm ">Delete</a></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-md-3 mt-5">
+          <h5 class="text-center">Enter SSC Student Marks</h5>
+          <form class="" action="" method="post">{% csrf_token %}
+            <input type="text" name="name" value="" placeholder="Enter Name " class="form-control mt-1" required>
+            <input type="number" name="hall_ticket" value="" placeholder="Hall Ticket Number" class="form-control mt-1"required>
+            <input type="number" name="telugu" value="" placeholder="Enter Telugu Marks"class="form-control mt-1" required>
+            <input type="number" name="hindi" value="" placeholder="Enter Hindi Marks"class="form-control mt-1" required>
+            <input type="number" name="english" value="" placeholder="Enter English Marks"class="form-control mt-1" required>
+            <input type="number" name="maths" value="" placeholder="Enter Maths Marks"class="form-control mt-1" required>
+            <input type="number" name="science" value="" placeholder="Enter Science Marks"class="form-control mt-1" required>
+            <input type="number" name="social" value="" placeholder="Enter Social Marks"class="form-control mt-1" required>
+            <center><input type="submit"  value="Submit" class="btn btn-success btn-sm mt-1">
+            <input type="reset"  value="Reset" class="btn btn-primary btn-sm mt-1"></center>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

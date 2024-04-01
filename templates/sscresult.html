@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% include 'cdlines.html' %}
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h4 class="text-center text-primary">Board Of Secondary Education {% now 'Y'%}</h4>
+          <h5 class="text-center text-primary">SSC RESULTS {% now 'M Y'%}</h5>
+          <b>
+        NAME               :<i class="text-primary">{{user.first_name}} &nbsp; {{user.last_name}}</i><br>
+        Hall Ticket Number : {% if ssc %}
+                              <i class="text-primary">{{ssc.hall_ticket}}</i>
+                             {% else %}
+                              --
+                             {% endif %}  <br>
+        GRADE              :{% if ssc %}
+                              {% if ssc.telugu < 35 or ssc.hindi < 35 or ssc.english < 35 or ssc.maths < 35 or ssc.science < 35 or ssc.social < 35 %}
+                                <i class="text-primary">F</i>
+                              {% elif ssc.total > 209 and ssc.total < 350 %}
+                                <i class="text-primary">C</i>
+                              {% elif ssc.total < 449 %}
+                                <i class="text-primary">B</i>
+                              {% elif ssc.total < 549 %}
+                                <i class="text-primary">A</i>
+                              {% elif ssc.total < 600 %}
+                                <i class="text-primary">A+</i>
+                              {% endif %}
+                            {% endif %}                  <br>
+        Total Marks        :  {% if ssc %}
+                                {{ssc.total}}
+                              {% else %}
+                                --
+                              {% endif %} <br>
+        Final Status       :{% if ssc %}
+                              {% if ssc.telugu < 35 or ssc.hindi < 35 or ssc.english < 35 or ssc.maths < 35 or ssc.science < 35 or ssc.social < 35 %}
+                                <i class="text-primary">FAIL</i>
+                              {% else %}
+                                <i class="text-primary">PASS</i>
+                              {% endif %}
+                            {% endif %}
+        </b>
+
+          <table class="table table-bordered table-hover mr-5">
+            <thead>
+              <th>Subject</th>
+              <th>Marks</th>
+              <th>Status</th>
+            </thead>
+            <tbody>
+              <tr>
+               <td><b>Telugu</b></td>
+               <td>{% if ssc %}
+                    {{ssc.telugu}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if ssc %}
+                    {% if ssc.telugu < 35 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td><b>Hindi</b></td>
+               <td>{% if ssc %}
+                    {{ssc.hindi}}
+                    {% else %}
+                    --
+                   {% endif %}
+                </td>
+               <td>{% if ssc %}
+                    {% if ssc.hindi < 35 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td><b>English</b></td>
+               <td>{% if ssc %}
+                    {{ssc.english}}
+                    {% else %}
+                    --
+                   {% endif %}
+               </td>
+               <td>{% if ssc %}
+                    {% if ssc.english < 35 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td><b>Maths</b></td>
+               <td>{% if ssc %}
+                    {{ssc.maths}}
+                    {% else %}
+                    --
+                   {% endif %}
+               </td>
+               <td>{% if ssc %}
+                    {% if ssc.maths < 35 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td><b>Science</b></td>
+               <td>{% if ssc %}
+                    {{ssc.science}}
+                    {% else %}
+                    --
+                   {% endif %}
+               </td>
+               <td>{% if ssc %}
+                    {% if ssc.science < 35 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td><b>Social</b></td>
+               <td>{% if ssc %}
+                    {{ssc.social}}
+                    {% else %}
+                    --
+                   {% endif %}
+               </td>
+               <td>{% if ssc %}
+                    {% if ssc.social < 35 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+            </tbody>
+          </table>
+
+          <pre>
+            <b>
+              Note: <span class="text-danger">Grading...</span>
+                550 to 600  ----> A+     450 t0 549  ----> A
+
+                350 to 449  ----> B      210 to 349  ----> C
+
+                          If Any Subject Fail  ----> F
+            </b>
+          </pre>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

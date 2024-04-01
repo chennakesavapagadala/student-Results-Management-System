@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% include 'cdlines.html' %}
+  </head>
+  <body>
+    <div class="container">
+       <h4 class="text-center">Degree 3rd Year Elective Paper Results</h4>
+      <div class="row">
+        <div class="col-md-12">
+          <b>
+            NAME               :<i class="text-primary">{{user.first_name}} &nbsp; {{user.last_name}}</i>   <br>
+            Hall Ticket Number : {% if degree %}
+                                  <i class="text-primary">{{degree.hall_ticket}}</i>
+                                 {% endif %}                                   <br>
+            GRADE              : {% if degree %}
+                                  {% if degree.mathematics_V_theory < 26 or degree.mathematics_V_practical < 26 or degree.mathematics_VI_Theory < 26 or degree.mathematics_VI_practical < 26 or degree.computer_science < 26 or degree.physics < 21 %}
+                                    <i class="text-primary">F</i>
+                                  {% elif degree.total > 180 and degree.total < 250 %}
+                                    <i class="text-primary">C</i>
+                                  {% elif degree.total < 349 %}
+                                    <i class="text-primary">B</i>
+                                  {% elif degree.total < 449 %}
+                                    <i class="text-primary">A</i>
+                                  {% elif degree.total < 500 %}
+                                    <i class="text-primary">A+</i>
+                                  {% endif %}
+                                {% endif %}  <br>
+            Total Marks        : {% if degree %}
+                                    <i class="text-primary">{{degree.total}}</i>
+                                  {% else %}
+                                    --
+                                  {% endif %}                                     <br>
+            Final Status       : {% if degree %}
+                                  {% if degree.mathematics_V_theory < 26 or degree.mathematics_V_practical < 26 or degree.mathematics_VI_Theory < 26 or degree.mathematics_VI_practical < 26 or degree.computer_science < 26 or degree.physics < 21 %}
+                                    <i class="text-primary">FAIL</i>
+                                  {% else %}
+                                    <i class="text-primary">PASS</i>
+                                  {% endif %}
+                                {% endif %}
+        </b>
+
+          <table class="table table-bordered table-hover mr-5">
+            <thead>
+              <th>Subject</th>
+              <th>Marks</th>
+              <th>Status</th>
+            </thead>
+            <tbody>
+              <tr>
+               <td>Mathematics-VI:(Theory)</td>
+               <td>{% if degree %}
+                    {{degree.mathematics_VI_Theory}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if degree %}
+                    {% if degree.mathematics_VI_Theory < 26 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td>Mathematics-VI:(practical)</td>
+               <td>{% if degree %}
+                    {{degree.mathematics_VI_practical}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if degree %}
+                    {% if degree.mathematics_VI_practical < 26 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td>Mathematics-V:(Theory)</td>
+               <td>{% if degree %}
+                    {{degree.mathematics_V_theory}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if degree %}
+                    {% if degree.mathematics_V_theory < 26 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td>Mathematics-V:(practical)</td>
+               <td>{% if degree %}
+                    {{degree.mathematics_V_practical}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if degree %}
+                    {% if degree.mathematics_V_practical < 26 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td>Physics</td>
+               <td>{% if degree %}
+                    {{degree.physics}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if degree %}
+                    {% if degree.physics < 21 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td>Computer Science</td>
+               <td>{% if degree %}
+                    {{degree.computer_science}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if degree %}
+                    {% if degree.computer_science < 26 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td>Practicals</td>
+               <td>{% if degree %}
+                    {{degree.practicals}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>---</td>
+             </tr>
+            </tbody>
+          </table>
+          <pre>
+            <b>
+              Note:
+                800 to 1000  ----> A+     500 to 799  ----> A
+
+                300 to 499  ----> B      200 to 299  ----> C
+
+                            0   to 199  ----> F
+            </b>
+          </pre>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

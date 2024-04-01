@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% include 'cdlines.html' %}
+  </head>
+  <body>
+    <div class="container">
+       <h4 class="text-center">B.Tech 4th Year Results</h4>
+      <div class="row">
+        <div class="col-md-12">
+          <b>
+            NAME               :<i class="text-primary">{{user.first_name}} &nbsp; {{user.last_name}}</i>   <br>
+            Hall Ticket Number : {% if btech %}
+                                  <i class="text-primary">{{btech.hall_ticket}}</i>
+                                 {% endif %}                                   <br>
+            GRADE              : {% if btech %}
+                                  {% if btech.se < 35 or btech.cc < 35 or btech.jp < 35 or btech.ip < 35 or btech.nn < 35 or btech.mc < 35 %}
+                                    <i class="text-primary">F</i>
+                                  {% elif btech.total > 180 and degree.total < 250 %}
+                                    <i class="text-primary">C</i>
+                                  {% elif btech.total < 349 %}
+                                    <i class="text-primary">B</i>
+                                  {% elif btech.total < 449 %}
+                                    <i class="text-primary">A</i>
+                                  {% elif btech.total < 500 %}
+                                    <i class="text-primary">A+</i>
+                                  {% endif %}
+                                {% endif %}  <br>
+            Total Marks        : {% if btech %}
+                                    <i class="text-primary">{{btech.total}}</i>
+                                  {% else %}
+                                    --
+                                  {% endif %}                                     <br>
+            Final Status       : {% if btech %}
+                                  {% if btech.computer_organization < 35 or btech.operating_systems < 35 or btech.oops < 35 or btech.data_communications < 35 or btech.operations_research < 35 or btech.system_rogramming < 35 %}
+                                    <i class="text-primary">FAIL</i>
+                                  {% else %}
+                                    <i class="text-primary">PASS</i>
+                                  {% endif %}
+                                {% endif %}
+        </b>
+
+          <table class="table table-bordered table-hover mr-5">
+            <thead>
+              <th>Subject</th>
+              <th>Marks</th>
+              <th>Status</th>
+            </thead>
+            <tbody>
+              <tr>
+               <td><b>Software Engineering</b></td>
+               <td>{% if btech %}
+                    {{btech.se}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if btech %}
+                    {% if btech.se < 35 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td><b>Computer Communication</b></td>
+               <td>{% if btech %}
+                    {{btech.cc}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if btech %}
+                    {% if btech.cc < 35 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td><b>Java Programming</b></td>
+               <td>{% if btech %}
+                    {{btech.jp}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if btech %}
+                    {% if btech.jp < 35 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td><b>Image Processing</b></td>
+               <td>{% if btech %}
+                    {{btech.ip}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if btech %}
+                    {% if btech.ip < 35 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td><b>Neural Networks</b></td>
+               <td>{% if btech %}
+                    {{btech.nn}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if btech %}
+                    {% if btech.nn < 35 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td><b>Mobile Computing</b></td>
+               <td>{% if btech %}
+                    {{btech.mc}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if btech %}
+                    {% if btech.mc < 35 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+            </tbody>
+          </table>
+          <pre>
+            <b>
+              Note:
+                800 to 1000  ----> A+     500 to 799  ----> A
+
+                300 to 499  ----> B      200 to 299  ----> C
+
+                            0   to 199  ----> F
+            </b>
+          </pre>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

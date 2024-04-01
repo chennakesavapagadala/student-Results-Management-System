@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% include 'cdlines.html' %}
+  </head>
+  <body>
+    <div class="container">
+       <h4 class="text-center">Intermediate 1st Year Results {% now 'M Y'%}</h4>
+      <div class="row">
+        <div class="col-md-12">
+          <b>
+        NAME               :<i class="text-primary">&nbsp;{{user.first_name}} &nbsp; {{user.last_name}}</i>   <br>
+        Hall Ticket Number : {% if inter %}
+                              <i class="text-primary">{{inter.hall_ticket}}</i>
+                             {% endif %}                                   <br>
+        GRADE              : {% if inter %}
+                              {% if inter.sanskrit < 35 or inter.english < 35 or inter.maths_A < 26 or inter.maths_B < 26 or inter.physics < 21 or inter.chemistry < 21 %}
+                                <i class="text-primary">F</i>
+                              {% elif inter.total > 180 and inter.total < 250 %}
+                                <i class="text-primary">C</i>
+                              {% elif inter.total < 349 %}
+                                <i class="text-primary">B</i>
+                              {% elif inter.total < 449 %}
+                                <i class="text-primary">A</i>
+                              {% elif inter.total < 500 %}
+                                <i class="text-primary">A+</i>
+                              {% endif %}
+                            {% endif %}  <br>
+        Total Marks        : {% if inter %}
+                                <i class="text-primary">{{inter.total}}</i>
+                              {% else %}
+                                --
+                              {% endif %}                                     <br>
+        Final Status       : {% if inter %}
+                              {% if inter.sanskrit < 35 or inter.english < 35 or inter.maths_A < 26 or inter.maths_B < 26 or inter.physics < 21 or inter.chemistry < 21 %}
+                                <i class="text-primary">FAIL</i>
+                              {% else %}
+                                <i class="text-primary">PASS</i>
+                              {% endif %}
+                            {% endif %}
+        </b>
+
+          <table class="table table-bordered table-hover mr-5">
+            <thead>
+              <th>Subject</th>
+              <th>Marks</th>
+              <th>Status</th>
+            </thead>
+            <tbody>
+              <tr>
+               <td><b>Sanskrit</b></td>
+               <td>{% if inter %}
+                    {{inter.sanskrit}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if inter %}
+                    {% if inter.sanskrit < 35 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td><b>English</b></td>
+               <td>{% if inter %}
+                    {{inter.english}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if inter %}
+                    {% if inter.english < 35 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td><b>maths(IA)</b></td>
+               <td>{% if inter %}
+                    {{inter.maths_A}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if inter %}
+                    {% if inter.maths_A < 26 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td><b>Maths(IB)</b></td>
+               <td>{% if inter %}
+                    {{inter.maths_B}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if inter %}
+                    {% if inter.maths_B < 26 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td><b>Physics</b></td>
+               <td>{% if inter %}
+                    {{inter.physics}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if inter %}
+                    {% if inter.physics < 21 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td><b>Chemistry</b></td>
+               <td>{% if inter %}
+                    {{inter.chemistry}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td>{% if inter %}
+                    {% if inter.chemistry < 21 %}
+                      F
+                    {% else %}
+                      P
+                    {% endif %}
+                   {% endif %}
+               </td>
+             </tr>
+             <tr>
+               <td><b>Practicals</b></td>
+               <td>{% if inter %}
+                    {{inter.practicals}}
+                    {% else %}
+                      --
+                   {% endif %}
+               </td>
+               <td> --- </td>
+             </tr>
+            </tbody>
+          </table>
+          <pre>
+            <b>
+              Note:
+                449 to 500  ----> A+     349 to 450  ----> A
+
+                249 to 350  ----> B      180 to 250  ----> C
+
+                            0   to 179  ----> F
+            </b>
+          </pre>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

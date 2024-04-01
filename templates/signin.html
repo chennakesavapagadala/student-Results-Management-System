@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- First create cdlines.html SEPARATE file. -->
+    {% include 'cdlines.html' %} <!--Then include Like This -->
+  </head>
+  <!-- From Here Write Styles -->
+    <style media="screen">
+    .btn{
+      width: 100%;
+      font-size: 23px;
+      line-height: 25px;
+    }
+    form{
+      box-shadow: 0px 0px 6px 1px black;
+    }
+    a{
+      font-size: 17px;
+    }
+
+    </style>
+  <body>
+
+    <div class="container-fluid"><!--StartMainContainer -->
+      <div class="row border navbar  navbar-light mt-2" style="box-shadow: 0px 0px 6px 2px black;background-color:;">
+        <div class=" offset-4 col-md-6 ">
+          <a class="navbar-brand" href="#">
+            <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30"  alt="">
+            <b>Anusha National Public Institute, Delhi {% now ' Y'%} (ANP)</b>
+          </a>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:200px;"></div>
+
+      <div class="row ml-5"><!--StartMainRow -->
+        <div class="offset-1 col-ms-4"><!--StartMainColumn -->
+          <!--From Start -->
+          {% if messages %}
+            {% for message in messages %}
+              <p class=" text-danger alert  alert-info alert-dismissible" data-dismiss="alert" aria-label="close"  style="margin-top: 200p;">{{message}}</p>
+            {% endfor%}
+          {% endif %}
+          <form method="post" class="border p-2">
+            {% csrf_token %}
+
+            <h5 class="text-secondary"> Signin Here.. </h5>
+
+            <input type="email" name="email" value="" class="form-control mt-3" placeholder="Enter Email Id">
+
+            <input type="password" name="pwd" value="" class="form-control mt-3" placeholder="Enter Password">
+
+            <input type="submit" class="btn btn-success mt-3 mr-3" value="Signin">
+
+            <input type="checkbox" class="ml-2" ><label for="checkbox" class="ml-2 mt-2">Remember me</label><br>
+
+            <a href="#" class="text-primary mr-5  ">Forget Password?</a>
+
+            <a href="{% url 'signup' %}" class="text-danger ml-1 ">Create New Account</a>
+
+            <p class="text-center mt-3"><i>Admin?<a href="http://127.0.0.1:8000/admin/login/?next=/admin/ " class="text-danger" target="_blank"> Login</a></i></p>
+
+          </form>
+          <!--From End -->
+        </div><!--EndMainColumn -->
+
+      </div><!--EndMainROW -->
+    </div><!--EndMainContainer -->
+
+  </body>
+</html>

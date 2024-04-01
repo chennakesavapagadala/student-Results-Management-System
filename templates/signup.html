@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- First create cdlines.html(Bootstrap Lines) SEPARATE file.
+    Then include in these .html page -->
+    {% include 'cdlines.html' %}
+  </head>
+  <!-- From Here Write Styles -->
+    <style media="screen">
+    .btn{
+      width: 100%;
+      font-size: 23px;
+      line-height: 25px;
+    }
+    form{
+      margin-top: 100px;
+      box-shadow: 0px 0px 6px 0px black;
+    }
+    p a{
+      font-size: 18px;
+    }
+    .gm,.ms,.fb,.ln{
+      height:10px;
+      width:10px;
+    }
+
+    </style>
+  <body>
+
+    <div class="container-fluid"><!--StartMainContainer -->
+      <div class="row border navbar  navbar-light mt-2" style="box-shadow: 0px 0px 6px 2px black;background-color:;">
+        <div class=" offset-4 col-md-6 ">
+          <a class="navbar-brand" href="#">
+            <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30"  alt="">
+            <b>Anusha National Public Institute, Delhi {% now ' Y'%} (ANP)</b>
+          </a>
+        </div>
+      </div>
+
+      <div class="row ml-5"><!--StartMainRow -->
+        <div class="offset-1 col-md-3 "><!--StartMainColumn -->
+          <!--From Start -->
+          <form method="post" class="border p-2">
+            {% csrf_token %}
+            <br>
+            <h5 class="text-secondary"> Signup Here.. </h5>
+            {% for message in messages %}
+              <p class="text-danger display-6">{{message}}</p>
+            {% endfor%}
+            <input type="text" name="fname" value="" class="form-control mt-2" placeholder="Enter First Name" required >
+
+            <input type="text" name="lname" value="" class="form-control mt-4" placeholder="Enter Last Name" required >
+
+            <input type="email" name="email" value="" class="form-control mt-4" placeholder="Enter Email Id" required >
+
+            <input type="password" name="pwd1" value="" class="form-control mt-4" placeholder="Enter Password" required >
+
+            <input type="password" name="pwd2" value="" class="form-control mt-4" placeholder="Confirm Password" required >
+
+            <input type="submit" class="btn btn-success mt-4 mr-3" value="Signup">
+
+            <p class="text-center mt-3"><i>Already have an account?<a href="{% url 'signin' %}" class="text-danger"> Login</a></i></p>
+
+            <p class="text-center mt-3"><i>Admin?<a href="http://127.0.0.1:8000/admin/login/?next=/admin/ " class="text-danger" target="_blank"> Login</a></i></p>
+          </form>
+          <!--From End -->
+        </div><!--EndMainColumn -->
+      </div><!--EndMainROW -->
+    </div><!--EndMainContainer -->
+
+  </body>
+</html>
